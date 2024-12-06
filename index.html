@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Beatriz St. Aubyn - Multidisciplinary Designer</title>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+    <h1>Hello, I’m a Multidisciplinary Designer!</h1>
+      <div>
+        <p id="beatriz">My name is Beatriz and welcome to my page! Here you’ll find a bit more about me, what is my passion, my work and my career path so far.</p>
+        <button id="download-cv">Download CV</button>
+      </div>
+    </div>
+    <img src="./assets/main.png" id="main" alt="Placeholder">
+  </header>
+
+  <!-- About Section -->
+  <section class="about">
+    <div>
+      <h2>Who is Beatriz?</h2>
+      <p><em>Pronouns She/Her</em>
+        <br>
+        <br>
+        I like to call myself a Jane-of-all-trades. My curious brain (and a little bit of ADHD) guides me through finding pleasure in knowledge - whether it is learning new bass songs, cooking new recipes, pushing the limits of how big an H1 can be... 
+        <br>
+        <br>
+        I have three tattoos so far: a big one on the inside of my arm, a smaller one on my wrist and another on my ribs. My 2025 plan is to finish part of my arm sleeve. Click here to find my tattoo inspiration.
+        <br>
+        <br>
+        My music taste is really diverse. I listen to jazz, heavy metal and drum and bass all in the same day, sometimes even in the same hour! My favourite band is (well was...) Nirvana, and KoRn.
+        <br>
+        <br>
+        I play some videogames, but I tend to always go back to the vintage ones - you can find me spending hours just playing The Sims Bustin Out on GBA.</p>
+    </div>
+    <img src="./assets/me.png" alt="Placeholder image">
+  </section>
+
+  <!-- Career Path -->
+  <section class="career-path">
+    <div class="career-path-container">
+      <div class="career-content">
+        <h2>Life was a highway, and I rode it all night long</h2>
+        <p>*Queue Tom Cochrane’s music*
+            <br>
+            <br>
+            With over one decade of working, I’ve had really different jobs - all ranging from Customer Service/reception, bartending, to working in a Casino serving drinks and also (finally) as a Designer.
+            Even though my design path only caught up five years ago, I still take all the experience and use it to improve myself professionally.</p>
+      </div>
+      <ul class="career-timeline">
+        <li><strong>August 2023 – ongoing:</strong> Multidisciplinary Designer</li>
+        <li><strong>January 2022 – July 2023:</strong> UX/UI Designer</li>
+        <li><strong>December 2021 – December 2022:</strong> Front-end Designer</li>
+        <li><strong>November 2020 – November 2021:</strong> Digital Marketing Executive</li>
+        <li><strong>May 2018 – November 2019:</strong> Designer</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Portfolio Gallery -->
+  <section class="portfolio-gallery">
+    <h2>Portfolio Gallery</h2>
+    <div class="portfolio-items">
+      <img src="#" alt="Portfolio item">
+      <img src="#" alt="Portfolio item">
+      <img src="#" alt="Portfolio item">
+      <img src="#" alt="Portfolio item">
+      <img src="#" alt="Portfolio item">
+      <img src="#" alt="Portfolio item">
+    </div>
+  </section>
+
+  <!-- Tattoo Section -->
+  <section class="tattoo-section">
+    <h2>Tattoo inspiration</h2>
+    <div class="tattoo-content">
+      <p>See my inspiration gallery for my next project</p>
+      <div class="tattoo-gallery">
+        <img src="#" alt="Tattoo inspiration">
+        <img src="#" alt="Tattoo inspiration">
+        <img src="#" alt="Tattoo inspiration">
+        <img src="#" alt="Tattoo inspiration">
+        <img src="#" alt="Tattoo inspiration">
+        <img src="#" alt="Tattoo inspiration">
+        <img src="#" alt="Tattoo inspiration">
+        <img src="#" alt="Tattoo inspiration">
+        <img src="#" alt="Tattoo inspiration">
+        <img src="#" alt="Tattoo inspiration">
+        <img src="#" alt="Tattoo inspiration">
+        <img src="#" alt="Tattoo inspiration">
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Want to chat?</p>
+    <a href="#">Instagram</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Behance</a>
+    <button>Send me an email</button>
+  </footer>
+
+  <script>
+    const gallery = document.querySelector('.tattoo-gallery');
+
+    // Mouse wheel horizontal scroll
+    gallery.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      gallery.scrollLeft += e.deltaY * 2; // Multiply scroll speed for smoother experience
+    });
+
+    // Dragging functionality for touch and desktop
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    gallery.addEventListener('mousedown', (e) => {
+      isDown = true;
+      gallery.classList.add('active');
+      startX = e.pageX - gallery.offsetLeft;
+      scrollLeft = gallery.scrollLeft;
+    });
+
+    gallery.addEventListener('mouseleave', () => {
+      isDown = false;
+      gallery.classList.remove('active');
+    });
+
+    gallery.addEventListener('mouseup', () => {
+      isDown = false;
+      gallery.classList.remove('active');
+    });
+
+    gallery.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - gallery.offsetLeft;
+      const walk = (x - startX) * 2; // Adjust drag speed
+      gallery.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch drag support for mobile
+    let startTouchX = 0;
+
+    gallery.addEventListener('touchstart', (e) => {
+      startTouchX = e.touches[0].pageX;
+      scrollLeft = gallery.scrollLeft;
+    });
+
+    gallery.addEventListener('touchmove', (e) => {
+      const x = e.touches[0].pageX;
+      const walk = (startTouchX - x) * 2; // Adjust scroll speed
+      gallery.scrollLeft = scrollLeft + walk;
+    });
+  </script>
+</body>
+</html>
