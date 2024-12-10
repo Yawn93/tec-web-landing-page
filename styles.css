@@ -286,6 +286,7 @@ header {
 .portfolio-gallery h2 {
   font-size: 1.8rem;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .portfolio-items {
@@ -309,12 +310,46 @@ header {
   }
   .portfolio-gallery h2{
     padding: 0px 20px;
-    text-align: center;
   }
 
 }
 
-/* Tattoo Section */
+/* Tattoo information Section */
+.tattoo {
+  max-width: 1200px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.tattoo h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.tattoo img {
+  width: 100%;
+  height: auto;
+  background: #ccc;
+}
+
+@media (max-width: 768px) {
+
+  .tattoo{
+    padding: 0px 20px;
+    display: block;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .tattoo div{
+    margin-bottom: 20px;
+  }
+}
+
+/* Tattoo inspiration photos Section */
 .tattoo-section {
   max-width: 1200px;
   margin: 40px auto;
