@@ -15,15 +15,17 @@
       <div class="logo">Beatriz St.Aubyn</div>
       <div class="menu-icon" id="menu-icon">☰</div>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#career">Career</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#tattoos">Tattoos</a></li>
+        <li><a href="#contacts">Contacts</a></li>
       </ul>
     </nav>
 
     <header>
-      <div class="header-content">
+      <div class="header-content" id="home">
         <h1>Hello, I’m a Multidisciplinary Designer!</h1>
         <div id="beatriz-content">
           <p id="beatriz">
@@ -38,7 +40,7 @@
     </header>
 
     <!-- About Section -->
-    <section class="about">
+    <section class="about" id="about">
       <div>
         <h2>Who is Beatriz?</h2>
         <p>
@@ -71,7 +73,7 @@
     </section>
 
     <!-- Career Path -->
-    <section class="career-path">
+    <section class="career-path" id="career">
       <div class="career-path-container">
         <div class="career-content">
           <h2>Life was a highway, and I rode it all night long</h2>
@@ -103,21 +105,70 @@
     </section>
 
     <!-- Portfolio Gallery -->
-    <section class="portfolio-gallery">
-      <h2>Portfolio Gallery</h2>
-      <div class="portfolio-items">
-        <img src="./assets/asys.png" alt="Portfolio item" />
-        <img src="./assets/m_share.png" alt="Portfolio item" />
-        <img src="./assets/ceramicstudio.png" alt="Portfolio item" />
-        <img src="./assets/cld.png" alt="Portfolio item" />
-        <img src="./assets/happy_daze.png" alt="Portfolio item" />
-        <img src="./assets/hola_mola.png" alt="Portfolio item" />
-      </div>
-      <button>Go to my portfolio</button>
+    <section id="portfolio">
+      <div class="portfolio-gallery">
+        <h2>Portfolio Gallery</h2>
+        <div class="portfolio-items">
+
+          
+          <!-- Item 1 -->
+          <div class="portfolio-item">
+            <img src="./assets/m_share.png" alt="Portfolio Item 1" 
+              data-title="M-Share Music AppS" 
+               data-description="My first project ever made in UX/UI Design.">
+          </div>
+
+          <!-- Item 2 -->
+          <div class="portfolio-item">
+            <img src="./assets/asys.png" alt="Portfolio Item 2" 
+                 data-title="ASYS Project Management" 
+                 data-description="My second project in UX/UI Design.">
+          </div>
+      
+          <!-- Item 3 -->
+          <div class="portfolio-item">
+            <img src="./assets/ceramicstudio.png" alt="Portfolio Item 3" 
+                 data-title="Ceramic Studio Website" 
+                 data-description="A UX/UI + front-end design for a Ceramic Studio in Portugal.">
+          </div>
+      
+          <!-- Item 4 -->
+          <div class="portfolio-item">
+            <img src="./assets/cld.png" alt="Portfolio Item 4" 
+                 data-title="Cloud Events Landign Page" 
+                 data-description="A Landing page designed for Cloud Events.">
+          </div>
+
+          <!-- Item 5 -->
+          <div class="portfolio-item">
+            <img src="./assets/happy_daze.png" alt="Portfolio Item 5" 
+                data-title="Happy Daze Portal Dashboard" 
+                data-description="A dashboard designed for Happy daze, showcasing main features.">
+          </div>
+
+          <!-- Item 6 -->
+          <div class="portfolio-item">
+            <img src="./assets/hola_mola.png" alt="Portfolio Item 6" 
+                 data-title="Hola Mola E-commerce" 
+                 data-description="An E-commerce made for Hola Mola project.">
+          </div>
+      
+        </div>
+      </section>
+      
+     <!-- Lightbox -->
+<div class="lightbox" style="display: none;">
+  <span class="close">&times;</span>
+  <img class="lightbox-image" src="" alt="">
+  <h3 class="lightbox-title"></h3>
+  <p class="lightbox-description"></p>
+</div>
+
+      <button class="portfolio-btn">Go to my portfolio</button>
     </section>
 
         <!-- Tattoos Information Section -->
-    <section class="tattoo">
+    <section class="tattoo" id="tattoos">
       <div>
         <h2>Ink, sleep, repeat</h2>
         <p>
@@ -162,7 +213,7 @@
       </div>
     </section>
 
-    <section class="chat">
+    <section class="chat" id="contacts">
       <h3>Want to Chat?</h3>
       <p>Follow me on my  Social Media links in the footer, or click the button to send me an email.</p>
       <button>Send me an email</button>
@@ -238,6 +289,48 @@
         .addEventListener("click", function () {
           const navLinks = document.getElementById("nav-links");
           navLinks.classList.toggle("show");
+        });
+
+        // Select portfolio items and the lightbox
+        const portfolioItems = document.querySelectorAll('.portfolio-item img');
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImage = document.querySelector('.lightbox-image');
+        const lightboxTitle = document.querySelector('.lightbox-title');
+        const lightboxDescription = document.querySelector('.lightbox-description');
+        const closeBtn = document.querySelector('.lightbox .close');
+
+        // Function to open the lightbox
+        function openLightbox(image) {
+          // Set lightbox content
+          lightboxImage.src = image.src;
+          lightboxTitle.textContent = image.getAttribute('data-title');
+          lightboxDescription.textContent = image.getAttribute('data-description');
+
+          // Show the lightbox
+          lightbox.style.display = 'flex';
+        }
+
+        // Function to close the lightbox
+        function closeLightbox() {
+          // Hide the lightbox
+          lightbox.style.display = 'none';
+        }
+
+        // Add event listeners to portfolio items
+        portfolioItems.forEach(item => {
+          item.addEventListener('click', () => {
+            openLightbox(item);
+          });
+        });
+
+        // Add event listener to close button
+        closeBtn.addEventListener('click', closeLightbox);
+
+        // Close lightbox when clicking outside the content
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
         });
     </script>
   </body>
